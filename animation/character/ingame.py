@@ -1,18 +1,54 @@
 from pico2d import *
 
+class BoyCharacter:
+    def __init__(self):
+        self.x, self.y = 0, 30
+        self.frame = 0
+        self.image = load_image('boyanimation.png')
+
+    def update(self):
+        #walking
+        self.frame = (self.frame + 1) % 8
+        self.x += 5
+
+
+    def draw(self):
+        self.frame = (self.frame*100, 1400, 100, 100, self.x, self.y)
+pass
+
+def handle_events():
+    global running
+    events = get_events()
+    for event in events:
+        if event.type == SDL_QUIT:
+            running = False
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            running = False
+#character = load_image('boyanimation.png')
+
+#x = 0
+#frame = 0
+
+#running boy_character
+
+# initializtiion code
 open_canvas()
 
-character = load_image('boyanimation.png')
+boy = BoyCharacter()
 
-x = 0
-frame = 0
+running = True
+while (running) :
+    handle_events()
 
-while (x < 800) :
+    boy.update()
+
     clear_canvas()
-    character.clip_draw(frame*100, 1400, 100, 100, x, 90)
+    #character.clip_draw(frame*100, 1400, 100, 100, x, 90)
+    #update_canvas()
+    #frame = (frame + 1) % 8
+    #x += 5
+    boy.draw()
     update_canvas()
-    frame = (frame + 1) % 8
-    x += 5
     delay(0.03)
     get_events()
 
