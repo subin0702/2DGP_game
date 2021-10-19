@@ -8,6 +8,11 @@ class Ground:
     def draw(self):
         self.image.draw(640, 250)
 
+class BackGround:
+    def __init__(self):
+        self.image = load_image('deep_forest_2.jpg')
+    def draw(self):
+        self.image.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
 
 def handle_events():
     global mapping
@@ -20,16 +25,17 @@ def handle_events():
 
 #open_canvas()
 open_canvas(1280,1024)
-back_ground = load_image('deep_forest_2.jpg')
+#back_ground = load_image('deep_forest_2.jpg')
 
 ground = Ground()
+background = BackGround()
 
 mapping = True
 
 while mapping:
     handle_events()
     clear_canvas()
-    back_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
+    background.draw()
     ground.draw()
 
     update_canvas()
