@@ -12,7 +12,7 @@ class BoyCharacter:
 
 
     def draw(self):
-        self.image.clip_draw = (self.frame*100, 1400, 100, 100, self.x, self.y)
+        self.image.clip_draw(self.frame*100, 1400, 100, 100, self.x, self.y)
 
 
 def handle_events():
@@ -31,14 +31,14 @@ def handle_events():
 #running boy_character
 
 # initializtiion code
-open_canvas()
+open_canvas(1280, 1024)
 
 boy = BoyCharacter()
 
 running = True
 
 # game main loop code
-while (running) :
+while running :
     handle_events()
 
     boy.update()
